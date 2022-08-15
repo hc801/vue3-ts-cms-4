@@ -1,4 +1,5 @@
 <template>
+  {{ $store.state.name }}
   <router-view></router-view>
 </template>
 

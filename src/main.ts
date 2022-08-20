@@ -2,27 +2,13 @@ import { createApp } from "vue";
 import App from "./App.vue";
 
 import router from "@/router";
-import store from "@/store";
+import store, { setupStore } from "@/store";
 import "normalize.css";
 import "./assets/css/index.less";
 
 import { globalRegister } from "@/global";
-import hyRequest from "@/service";
 
-hyRequest.request({
-  method: "GET",
-  url: "/test",
-  interceptors: {
-    requestInterceptor: (config) => {
-      console.log("request请求成功的拦截器");
-      return config;
-    },
-    responseInterceptor: (res) => {
-      console.log("request响应成功的拦截器");
-      return res;
-    }
-  }
-});
+setupStore();
 
 const app = createApp(App);
 

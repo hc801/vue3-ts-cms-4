@@ -2,13 +2,21 @@ import { App } from "vue";
 
 import "element-plus/dist/index.css";
 import {
+  ElAside,
   ElButton,
   ElCheckbox,
+  ElContainer,
   ElForm,
   ElFormItem,
+  ElHeader,
   ElIcon,
   ElInput,
   ElLink,
+  ElMain,
+  ElMenu,
+  ElMenuItem,
+  ElMenuItemGroup,
+  ElSubMenu,
   ElTabPane,
   ElTabs
 } from "element-plus";
@@ -22,7 +30,15 @@ const components = [
   ElInput,
   ElButton,
   ElCheckbox,
-  ElLink
+  ElLink,
+  ElContainer,
+  ElAside,
+  ElHeader,
+  ElMain,
+  ElMenu,
+  ElSubMenu,
+  ElMenuItem,
+  ElMenuItemGroup
 ];
 
 export default function (app: App): void {

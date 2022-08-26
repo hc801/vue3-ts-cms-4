@@ -3,9 +3,15 @@ import { App } from "vue";
 import "element-plus/dist/index.css";
 import {
   ElAside,
+  ElAvatar,
   ElButton,
   ElCheckbox,
+  ElCol,
   ElContainer,
+  ElDatePicker,
+  ElDropdown,
+  ElDropdownItem,
+  ElDropdownMenu,
   ElForm,
   ElFormItem,
   ElHeader,
@@ -16,6 +22,9 @@ import {
   ElMenu,
   ElMenuItem,
   ElMenuItemGroup,
+  ElOption,
+  ElRow,
+  ElSelect,
   ElSubMenu,
   ElTabPane,
   ElTabs
@@ -38,7 +47,16 @@ const components = [
   ElMenu,
   ElSubMenu,
   ElMenuItem,
-  ElMenuItemGroup
+  ElMenuItemGroup,
+  ElDropdown,
+  ElDropdownMenu,
+  ElDropdownItem,
+  ElAvatar,
+  ElRow,
+  ElCol,
+  ElSelect,
+  ElDatePicker,
+  ElOption
 ];
 
 export default function (app: App): void {

@@ -11,7 +11,7 @@ class HyRequest {
   instance: AxiosInstance;
   interceptors?: HyRequestInterceptor;
   showLoading?: boolean;
-  loading: any;
+  loading?: any;
 
   constructor(config: HyRequestConfig) {
     // 创建axios实例

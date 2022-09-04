@@ -5,7 +5,7 @@
         <el-avatar
           class="user-avatar"
           :size="30"
-          src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+          src="https://avatars.githubusercontent.com/u/78576743?v=4"
         />
         <span>{{ name }}</span>
       </span>

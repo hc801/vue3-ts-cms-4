@@ -46,6 +46,7 @@ const handleFoldChange = (isFold: boolean) => {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        height: 48px !important;
         background-color: #fff;
       }
       .page-content {
@@ -56,6 +57,10 @@ const handleFoldChange = (isFold: boolean) => {
           justify-content: center;
           border-radius: 5px;
           background-color: #fff;
+
+          .page-info div {
+            width: 100%;
+          }
         }
       }
     }

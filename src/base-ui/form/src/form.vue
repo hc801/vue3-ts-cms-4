@@ -108,8 +108,10 @@ const handleValueChange = (value: any, key: string) => {
 </script>
 
 <style scoped lang="less">
-.header {
-  text-align: center;
-  margin-bottom: 20px;
+.hy-form {
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
 }
 </style>

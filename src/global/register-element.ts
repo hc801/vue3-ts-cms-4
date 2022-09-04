@@ -26,6 +26,8 @@ import {
   ElRow,
   ElSelect,
   ElSubMenu,
+  ElTable,
+  ElTableColumn,
   ElTabPane,
   ElTabs
 } from "element-plus";
@@ -56,7 +58,9 @@ const components = [
   ElCol,
   ElSelect,
   ElDatePicker,
-  ElOption
+  ElOption,
+  ElTable,
+  ElTableColumn
 ];
 
 export default function (app: App): void {

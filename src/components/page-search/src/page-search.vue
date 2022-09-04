@@ -6,7 +6,7 @@
       </template>
       <template #footer>
         <div class="handle-btns">
-          <el-button :icon="Refresh" type="primary" @click="handleResetClick">
+          <el-button :icon="Refresh" @click="handleResetClick">
             重置
           </el-button>
           <el-button :icon="Search" type="primary" @click="handleSearchClick">

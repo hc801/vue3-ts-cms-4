@@ -121,6 +121,10 @@ const handleEditClick = () => {
 const handleDeleteClick = () => {
   console.log("handleDeleteClick");
 };
+
+defineExpose({
+  getPageData
+});
 </script>
 
 <style scoped lang="less">

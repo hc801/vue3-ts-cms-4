@@ -4,9 +4,7 @@
       <slot name="header">
         <div class="title">{{ title }}</div>
         <div class="header-handler">
-          <slot name="headerHandler">
-            <el-button type="primary">{{ btnText }}</el-button>
-          </slot>
+          <slot name="headerHandler"> </slot>
         </div>
       </slot>
     </div>

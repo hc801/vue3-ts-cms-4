@@ -23,6 +23,7 @@ import {
   ElMenuItem,
   ElMenuItemGroup,
   ElOption,
+  ElPagination,
   ElRow,
   ElSelect,
   ElSubMenu,
@@ -60,7 +61,8 @@ const components = [
   ElDatePicker,
   ElOption,
   ElTable,
-  ElTableColumn
+  ElTableColumn,
+  ElPagination
 ];
 
 export default function (app: App): void {

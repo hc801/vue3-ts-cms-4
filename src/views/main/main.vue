@@ -57,10 +57,9 @@ const handleFoldChange = (isFold: boolean) => {
           justify-content: center;
           border-radius: 5px;
           background-color: #fff;
-
-          .page-info div {
-            width: 100%;
-          }
+        }
+        .page-info div {
+          width: 100%;
         }
       }
     }

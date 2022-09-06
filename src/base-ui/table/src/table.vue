@@ -3,8 +3,8 @@
     <div class="header">
       <slot name="header">
         <div class="title">{{ title }}</div>
-        <div class="header-handle">
-          <slot name="headerHandle">
+        <div class="header-handler">
+          <slot name="headerHandler">
             <el-button type="primary">{{ btnText }}</el-button>
           </slot>
         </div>
@@ -35,13 +35,23 @@
       </template>
     </el-table>
     <div class="footer" v-if="showFooter">
-      <slot name="footer"> 默认的底部 </slot>
+      <slot name="footer">
+        <el-pagination
+          v-model:currentPage="page.currentPage"
+          v-model:page-size="page.pageSize"
+          :page-sizes="[10, 20, 30]"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="listCount"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+        />
+      </slot>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-defineProps({
+const props = defineProps({
   listData: {
     type: Array,
     required: true
@@ -49,6 +59,10 @@ defineProps({
   listCount: {
     type: Number,
     default: 0
+  },
+  page: {
+    type: Object,
+    default: () => ({ currentPage: 1, pageSize: 10 })
   },
   title: {
     type: String,
@@ -75,6 +89,15 @@ defineProps({
     default: true
   }
 });
+
+const emit = defineEmits(["update:page"]);
+
+const handleSizeChange = (pageSize: number) => {
+  emit("update:page", { ...props.page, pageSize });
+};
+const handleCurrentChange = (currentPage: number) => {
+  emit("update:page", { ...props.page, currentPage });
+};
 </script>
 
 <style scoped lang="less">
@@ -91,6 +114,13 @@ defineProps({
       font-size: 20px;
       font-weight: 700;
     }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
   }
 }
 </style>

@@ -1,7 +1,12 @@
 import { Module } from "vuex";
 import { ISystemState } from "./types";
 import { IRootState } from "@/store/types";
-import { getPageListData } from "@/service/main/system/system";
+import {
+  getPageListData,
+  createPageData,
+  deletePageData,
+  editPageData
+} from "@/service/main/system/system";
 
 const systemModule: Module<ISystemState, IRootState> = {
   namespaced: true,
@@ -43,6 +48,48 @@ const systemModule: Module<ISystemState, IRootState> = {
         pageName.slice(0, 1).toUpperCase() + pageName.slice(1);
       commit(`change${changePageName}List`, list);
       commit(`change${changePageName}Count`, totalCount);
+    },
+    async createPageDataAction({ dispatch }, payload) {
+      const { pageName, newData } = payload;
+      const pageUrl = `/${pageName}`;
+
+      await createPageData(pageUrl, newData);
+
+      dispatch("getPageListAction", {
+        pageName,
+        queryInfo: {
+          offset: 0,
+          size: 10
+        }
+      });
+    },
+    async deletePageDataAction({ dispatch }, payload) {
+      const { pageName, id } = payload;
+      const pageUrl = `/${pageName}/${id}`;
+
+      await deletePageData(pageUrl);
+
+      dispatch("getPageListAction", {
+        pageName,
+        queryInfo: {
+          offset: 0,
+          size: 10
+        }
+      });
+    },
+    async editPageDataAction({ dispatch }, payload) {
+      const { pageName, id, editData } = payload;
+      const pageUrl = `/${pageName}/${id}`;
+
+      await editPageData(pageUrl, editData);
+
+      dispatch("getPageListAction", {
+        pageName,
+        queryInfo: {
+          offset: 0,
+          size: 10
+        }
+      });
     }
   }
 };

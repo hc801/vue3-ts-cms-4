@@ -7,7 +7,9 @@
       v-model:page="pageInfo"
     >
       <template #headerHandler>
-        <el-button type="primary">{{ contentTableConfig.btnText }}</el-button>
+        <el-button type="primary" @click="handleNewClick">{{
+          contentTableConfig.btnText
+        }}</el-button>
       </template>
       <template #status="scope">
         <el-button
@@ -25,14 +27,14 @@
       <template #updateAt="scope">
         {{ $filter.formatTime(scope.row.updateAt) }}
       </template>
-      <template #handler>
+      <template #handler="scope">
         <div class="handler-btns">
           <el-button
             link
             type="primary"
             size="small"
             :icon="Edit"
-            @click="handleEditClick"
+            @click="handleEditClick(scope.row)"
           >
             编辑
           </el-button>
@@ -41,7 +43,7 @@
             type="primary"
             size="small"
             :icon="Delete"
-            @click="handleDeleteClick"
+            @click="handleDeleteClick(scope.row)"
           >
             删除
           </el-button>
@@ -75,6 +77,8 @@ const props = defineProps({
     required: true
   }
 });
+
+const emit = defineEmits(["newBtnClick", "editBtnClick"]);
 
 const store = useStore();
 
@@ -113,13 +117,16 @@ const otherPropsSlots = props.contentTableConfig.propList.filter(
 
 // 处理按钮逻辑
 const handleNewClick = () => {
-  console.log("handleNewClick");
+  emit("newBtnClick");
 };
-const handleEditClick = () => {
-  console.log("handleEditClick");
+const handleEditClick = (item: any) => {
+  emit("editBtnClick", item);
 };
-const handleDeleteClick = () => {
-  console.log("handleDeleteClick");
+const handleDeleteClick = (item: any) => {
+  store.dispatch("system/deletePageDataAction", {
+    pageName: props.pageName,
+    id: item.id
+  });
 };
 
 defineExpose({

@@ -29,14 +29,15 @@
                   style="width: 100%"
                   v-bind="item.otherOptions"
                   :placeholder="item.placeholder"
-                  :model-value="modelValue[item.field] === 0 ? '禁用' : '启用'"
+                  :model-value="modelValue[item.field]"
                   @update:modelValue="handleValueChange($event, item.field)"
                 >
                   <el-option
                     v-for="option in item.options"
                     :key="option.value"
-                    :value="option.title"
+                    :value="option.value"
                   >
+                    {{ option.title }}
                   </el-option>
                 </el-select>
               </template>
@@ -97,12 +98,6 @@ const props = defineProps({
 const emit = defineEmits(["update:modelValue"]);
 
 const handleValueChange = (value: any, key: string) => {
-  if (key === "enable" && value === "禁用") {
-    value = 0;
-  } else if (key === "enable" && value === "启用") {
-    value = 1;
-  }
-
   emit("update:modelValue", { ...props.modelValue, [key]: value });
 };
 </script>

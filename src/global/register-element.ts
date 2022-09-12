@@ -9,6 +9,7 @@ import {
   ElCol,
   ElContainer,
   ElDatePicker,
+  ElDialog,
   ElDropdown,
   ElDropdownItem,
   ElDropdownMenu,
@@ -62,7 +63,8 @@ const components = [
   ElOption,
   ElTable,
   ElTableColumn,
-  ElPagination
+  ElPagination,
+  ElDialog
 ];
 
 export default function (app: App): void {

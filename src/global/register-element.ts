@@ -4,6 +4,8 @@ import "element-plus/dist/index.css";
 import {
   ElAside,
   ElAvatar,
+  ElBreadcrumb,
+  ElBreadcrumbItem,
   ElButton,
   ElCheckbox,
   ElCol,
@@ -64,7 +66,9 @@ const components = [
   ElTable,
   ElTableColumn,
   ElPagination,
-  ElDialog
+  ElDialog,
+  ElBreadcrumb,
+  ElBreadcrumbItem
 ];
 
 export default function (app: App): void {

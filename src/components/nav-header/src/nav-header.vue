@@ -5,16 +5,22 @@
       <template v-else><Expand /></template>
     </el-icon>
     <div class="content">
-      <div>面包屑</div>
+      <hy-breadcrumb :breadcrumbs="breadcrumbs"></hy-breadcrumb>
       <user-info></user-info>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
+import { useStore } from "@/store";
+import { useRoute } from "vue-router";
+
 import UserInfo from "./user-info.vue";
+import HyBreadcrumb from "@/base-ui/breadcrumb";
 import { Fold, Expand } from "@element-plus/icons-vue";
+
+import { pathMapToBreadcrumb } from "@/utils/map-menus";
 
 const emit = defineEmits(["foldChange"]);
 
@@ -23,6 +29,14 @@ const handleFoldClick = () => {
   isFold.value = !isFold.value;
   emit("foldChange", isFold.value);
 };
+
+const store = useStore();
+const route = useRoute();
+const breadcrumbs = computed(() => {
+  const userMenus = store.state.login.userMenus;
+  const currentPath = route.path;
+  return pathMapToBreadcrumb(userMenus, currentPath);
+});
 </script>
 
 <style scoped lang="less">

@@ -8,7 +8,7 @@
       :collapse="collapse"
       text-color="#b7bdc3"
       class="el-menu-vertical"
-      default-active="2"
+      :default-active="defaultActive"
     >
       <template v-for="item in userMenus" :key="item.id">
         <template v-if="item.type === 1">
@@ -65,9 +65,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useStore } from "@/store";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 import {
   Monitor,
@@ -75,6 +75,8 @@ import {
   ChatLineRound,
   Setting
 } from "@element-plus/icons-vue";
+
+import { pathMapToMenu } from "@/utils/map-menus";
 
 defineProps({
   collapse: {
@@ -84,9 +86,14 @@ defineProps({
 });
 
 const store = useStore();
+const router = useRouter();
+const route = useRoute();
+
 const userMenus = computed(() => store.state.login.userMenus);
 
-const router = useRouter();
+const currentPath = route.path;
+const menu = pathMapToMenu(userMenus.value, currentPath);
+const defaultActive = ref(menu.id + "");
 
 const handleMenuItemClick = (item: any) => {
   router.push({

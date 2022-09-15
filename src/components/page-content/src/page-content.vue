@@ -7,7 +7,7 @@
       v-model:page="pageInfo"
     >
       <template #headerHandler>
-        <el-button type="primary" @click="handleNewClick">{{
+        <el-button type="primary" @click="handleNewClick" v-if="isCreate">{{
           contentTableConfig.btnText
         }}</el-button>
       </template>
@@ -35,6 +35,7 @@
             size="small"
             :icon="Edit"
             @click="handleEditClick(scope.row)"
+            v-if="isUpdate"
           >
             编辑
           </el-button>
@@ -44,6 +45,7 @@
             size="small"
             :icon="Delete"
             @click="handleDeleteClick(scope.row)"
+            v-if="isDelete"
           >
             删除
           </el-button>
@@ -67,6 +69,8 @@ import { useStore } from "@/store";
 import HyTable from "@/base-ui/table";
 import { Edit, Delete } from "@element-plus/icons-vue";
 
+import { usePermission } from "@/hook/usePermission";
+
 const props = defineProps({
   contentTableConfig: {
     type: Object,
@@ -85,8 +89,16 @@ const store = useStore();
 const pageInfo = ref({ currentPage: 1, pageSize: 10 });
 watch(pageInfo, () => getPageData());
 
+// 获取操作的权限
+const isQuery = usePermission(props.pageName, "query");
+const isCreate = usePermission(props.pageName, "create");
+const isUpdate = usePermission(props.pageName, "update");
+const isDelete = usePermission(props.pageName, "delete");
+
 // 请求数据
 const getPageData = (queryInfo: any = {}) => {
+  if (!isQuery) return;
+
   store.dispatch("system/getPageListAction", {
     pageName: props.pageName,
     queryInfo: {

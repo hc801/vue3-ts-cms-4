@@ -17,8 +17,7 @@
       :modalConfig="modalConfigRef"
       :defaultInfo="defaultInfo"
       :pageName="PAGE_NAME"
-    ></page-modal
-    >>
+    ></page-modal>
   </div>
 </template>
 

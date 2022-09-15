@@ -12,7 +12,7 @@ import { IRootState } from "../types";
 import { ILoginState } from "./types";
 import { IAccount } from "@/service/login/types";
 
-import { mapMenuToRoutes } from "@/utils/map-menus";
+import { mapMenusToPermissions, mapMenuToRoutes } from "@/utils/map-menus";
 
 const loginModule: Module<ILoginState, IRootState> = {
   namespaced: true,
@@ -20,7 +20,8 @@ const loginModule: Module<ILoginState, IRootState> = {
     return {
       token: "",
       userInfo: {},
-      userMenus: {}
+      userMenus: {},
+      permissions: []
     };
   },
   mutations: {
@@ -37,6 +38,10 @@ const loginModule: Module<ILoginState, IRootState> = {
       routes.forEach((route) => {
         router.addRoute("main", route);
       });
+
+      // 获取用户按钮权限
+      const permissions = mapMenusToPermissions(userMenus);
+      state.permissions = permissions;
     }
   },
   actions: {

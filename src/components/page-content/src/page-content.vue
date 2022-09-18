@@ -111,9 +111,11 @@ const getPageData = (queryInfo: any = {}) => {
 getPageData();
 
 // 从vuex中获取数据
-const dataList = computed(() => store.getters["system/pageListData"]("users"));
+const dataList = computed(() =>
+  store.getters["system/pageListData"](props.pageName)
+);
 const dataCount = computed(() =>
-  store.getters["system/pageListCount"]("users")
+  store.getters["system/pageListCount"](props.pageName)
 );
 
 // 获取剩余插槽

@@ -13,7 +13,9 @@ const systemModule: Module<ISystemState, IRootState> = {
   state() {
     return {
       usersList: [],
-      usersCount: 0
+      usersCount: 0,
+      roleList: [],
+      roleCount: 0
     };
   },
   mutations: {
@@ -22,6 +24,12 @@ const systemModule: Module<ISystemState, IRootState> = {
     },
     changeUsersCount(state, count: number) {
       state.usersCount = count;
+    },
+    changeRoleList(state, list: any[]) {
+      state.roleList = list;
+    },
+    changeRoleCount(state, count: number) {
+      state.roleCount = count;
     }
   },
   getters: {
@@ -38,10 +46,14 @@ const systemModule: Module<ISystemState, IRootState> = {
   },
   actions: {
     async getPageListAction({ commit }, payload) {
-      const { pageName } = payload;
+      const { pageName, showLoading } = payload;
       const pageUrl = `/${pageName}/list`;
 
-      const pageResult = await getPageListData(pageUrl, payload.queryInfo);
+      const pageResult = await getPageListData(
+        pageUrl,
+        payload.queryInfo,
+        showLoading
+      );
 
       const { list, totalCount } = pageResult.data;
       const changePageName =
@@ -60,7 +72,8 @@ const systemModule: Module<ISystemState, IRootState> = {
         queryInfo: {
           offset: 0,
           size: 10
-        }
+        },
+        showLoading: false
       });
     },
     async deletePageDataAction({ dispatch }, payload) {
@@ -74,7 +87,8 @@ const systemModule: Module<ISystemState, IRootState> = {
         queryInfo: {
           offset: 0,
           size: 10
-        }
+        },
+        showLoading: false
       });
     },
     async editPageDataAction({ dispatch }, payload) {
@@ -88,7 +102,8 @@ const systemModule: Module<ISystemState, IRootState> = {
         queryInfo: {
           offset: 0,
           size: 10
-        }
+        },
+        showLoading: false
       });
     }
   }

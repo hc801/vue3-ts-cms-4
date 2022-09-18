@@ -67,7 +67,7 @@ const newCallback = () => {
   passwordItem!.isHidden = false;
 };
 const editCallback = () => {
-  modalConfig.title = "修改用户";
+  modalConfig.title = "编辑用户";
   passwordItem!.isHidden = true;
 };
 

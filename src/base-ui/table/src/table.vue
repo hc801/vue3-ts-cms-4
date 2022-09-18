@@ -49,6 +49,9 @@
 </template>
 
 <script setup lang="ts">
+import { PropType } from "vue";
+import { IPropItem } from "../types";
+
 const props = defineProps({
   listData: {
     type: Array,
@@ -67,7 +70,7 @@ const props = defineProps({
     default: "默认的title"
   },
   propList: {
-    type: Array,
+    type: Array as PropType<IPropItem[]>,
     required: true
   },
   btnText: {

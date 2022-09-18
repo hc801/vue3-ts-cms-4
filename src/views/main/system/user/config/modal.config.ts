@@ -1,8 +1,4 @@
-import { IForm } from "@/base-ui/form";
-
-interface IDialog extends IForm {
-  title?: string;
-}
+import { IDialog } from "@/base-ui/form";
 
 export const modalConfig: IDialog = {
   formItems: [

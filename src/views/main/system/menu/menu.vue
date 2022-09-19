@@ -1,9 +1,24 @@
 <template>
   <div class="menu">
-    <h2>menu</h2>
+    <page-content
+      :contentTableConfig="contentTableConfig"
+      :pageName="PAGE_NAME"
+    ></page-content>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import PageContent from "@/components/page-content";
 
-<style scoped></style>
+import { contentTableConfig } from "./config/content.config";
+
+const PAGE_NAME = "menu";
+</script>
+
+<style scoped lang="less">
+.menu {
+  .page-content {
+    border: 0;
+  }
+}
+</style>

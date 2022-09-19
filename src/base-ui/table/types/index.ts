@@ -12,4 +12,5 @@ export interface ITable {
   showFooter?: boolean;
   showSelectColumn?: boolean;
   showIndexColumn?: boolean;
+  childrenProps?: any;
 }

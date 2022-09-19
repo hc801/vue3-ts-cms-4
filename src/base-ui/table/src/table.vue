@@ -8,7 +8,7 @@
         </div>
       </slot>
     </div>
-    <el-table :data="listData" border>
+    <el-table :data="listData" border v-bind="childrenProps">
       <el-table-column
         type="selection"
         align="center"
@@ -23,7 +23,7 @@
         label="序号"
       ></el-table-column>
       <template v-for="propItem in propList" :key="propItem.prop">
-        <el-table-column align="center" v-bind="propItem">
+        <el-table-column align="center" v-bind="propItem" show-overflow-tooltip>
           <template #default="scope">
             <slot :name="propItem.slotName" :row="scope.row">
               {{ scope.row[propItem.prop] }}
@@ -76,6 +76,10 @@ const props = defineProps({
   btnText: {
     type: String,
     default: "新建数据"
+  },
+  childrenProps: {
+    type: Object,
+    default: () => ({})
   },
   showFooter: {
     type: Boolean,

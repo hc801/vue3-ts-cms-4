@@ -19,6 +19,7 @@ import {
   ElFormItem,
   ElHeader,
   ElIcon,
+  ElImage,
   ElInput,
   ElLink,
   ElMain,
@@ -70,7 +71,8 @@ const components = [
   ElDialog,
   ElBreadcrumb,
   ElBreadcrumbItem,
-  ElTree
+  ElTree,
+  ElImage
 ];
 
 export default function (app: App): void {

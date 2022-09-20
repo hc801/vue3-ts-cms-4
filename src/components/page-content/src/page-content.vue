@@ -17,8 +17,18 @@
           size="small"
           :type="scope.row.enable ? 'success' : 'danger'"
           @click="handleNewClick"
+          v-if="pageName !== 'goods'"
         >
-          {{ scope.row.enable ? "启用" : "禁用" }}
+          {{ scope.row.enable ? "可用" : "下架" }}
+        </el-button>
+        <el-button
+          plain
+          size="small"
+          :type="scope.row.status ? 'success' : 'danger'"
+          @click="handleNewClick"
+          v-else
+        >
+          {{ scope.row.status ? "可用" : "下架" }}
         </el-button>
       </template>
       <template #createAt="scope">

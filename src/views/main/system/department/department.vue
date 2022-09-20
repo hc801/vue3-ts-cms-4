@@ -37,8 +37,16 @@ const PAGE_NAME = "department";
 
 const [pageContentRef, handleQueryClick, handleResetClick] = usePageSearch();
 
-const [pageModalRef, defaultInfo, handleEditData, handleNewData] =
-  usePageModal();
+const newCallback = () => {
+  modalConfig.title = "新建部门";
+};
+const editCallback = () => {
+  modalConfig.title = "编辑部门";
+};
+const [pageModalRef, defaultInfo, handleEditData, handleNewData] = usePageModal(
+  newCallback,
+  editCallback
+);
 </script>
 
 <style scoped></style>

@@ -36,7 +36,8 @@ import {
   ElTabPane,
   ElTabs,
   ElTree,
-  ElTooltip
+  ElTooltip,
+  ElCard
 } from "element-plus";
 
 const components = [
@@ -74,7 +75,8 @@ const components = [
   ElBreadcrumbItem,
   ElTree,
   ElImage,
-  ElTooltip
+  ElTooltip,
+  ElCard
 ];
 
 export default function (app: App): void {

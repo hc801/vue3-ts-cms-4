@@ -10,8 +10,14 @@
     </el-row>
     <!-- 2.中间的图表 -->
     <el-row :gutter="10">
-      <el-col span="7">
-        <hy-card title="分类商品数量（饼图）"></hy-card>
+      <el-col :span="7">
+        <hy-card title="分类商品数量（饼图）"> </hy-card>
+      </el-col>
+      <el-col :span="10">
+        <hy-card title="不同城市商品销量"> </hy-card>
+      </el-col>
+      <el-col :span="7">
+        <hy-card title="分类商品数量（玫瑰图）"> </hy-card>
       </el-col>
     </el-row>
     <!-- 3.底部的图表 -->

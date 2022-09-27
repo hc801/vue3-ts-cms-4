@@ -1,6 +1,6 @@
 import * as echarts from "echarts";
 
-import ChinaMapData from "../data/china.json";
+const ChinaMapData = require("../data/china.json");
 
 echarts.registerMap("china", ChinaMapData);
 

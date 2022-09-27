@@ -11,10 +11,14 @@
     <!-- 2.中间的图表 -->
     <el-row :gutter="10">
       <el-col :span="7">
-        <hy-card title="分类商品数量（饼图）"> </hy-card>
+        <hy-card title="分类商品数量（饼图）">
+          <pie-echart :pieData="categoryGoodsCount"></pie-echart>
+        </hy-card>
       </el-col>
       <el-col :span="10">
-        <hy-card title="不同城市商品销量"> </hy-card>
+        <hy-card title="不同城市商品销量">
+          <map-echart :mapData="addressGoodsSale"></map-echart>
+        </hy-card>
       </el-col>
       <el-col :span="7">
         <hy-card title="分类商品数量（玫瑰图）"> </hy-card>
@@ -30,11 +34,50 @@ import { useStore } from "@/store";
 
 import HyCard from "@/base-ui/card";
 import StatisticalPanel from "@/components/statistical-panel";
+import { PieEchart, MapEchart } from "@/components/page-echarts";
 
 const store = useStore();
 store.dispatch("analysis/getAnalysisDataAction");
 
 const topPanelData = computed(() => store.state.analysis.topPanelData);
+const categoryGoodsCount = computed(() => {
+  return store.state.analysis.categoryGoodsCount.map((item) => {
+    return { name: item.name, value: item.goodsCount };
+  });
+});
+const categoryGoodsSale = computed(() => {
+  const xLabels: string[] = [];
+  const values: any[] = [];
+
+  const categoryGoodsSale = store.state.analysis.categoryGoodsSale;
+  for (const item of categoryGoodsSale) {
+    if (item.goodsCount && item.name) {
+      xLabels.push(item.name);
+      values.push(item.goodsCount);
+    }
+  }
+
+  return { xLabels, values };
+});
+const categoryGoodsFavor = computed(() => {
+  const xLabels: string[] = [];
+  const values: any[] = [];
+
+  const categoryGoodsFavor = store.state.analysis.categoryGoodsFavor;
+  for (const item of categoryGoodsFavor) {
+    if (item.goodsCount && item.name) {
+      xLabels.push(item.name);
+      values.push(item.goodsCount);
+    }
+  }
+
+  return { xLabels, values };
+});
+const addressGoodsSale = computed(() => {
+  return store.state.analysis.addressGoodsSale.map((item) => {
+    return { name: item.address, value: item.count };
+  });
+});
 </script>
 <style scoped lang="less">
 .dashboard {

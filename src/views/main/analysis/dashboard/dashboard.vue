@@ -29,10 +29,14 @@
     <!-- 3.底部的图表 -->
     <el-row :gutter="10">
       <el-col :span="12">
-        <hy-card title="分类商品的销量"></hy-card>
+        <hy-card title="分类商品的销量">
+          <line-echart v-bind="categoryGoodsSale"></line-echart>
+        </hy-card>
       </el-col>
       <el-col :span="12">
-        <hy-card title="分类商品的收藏"></hy-card>
+        <hy-card title="分类商品的收藏">
+          <bar-echart v-bind="categoryGoodsFavor"></bar-echart>
+        </hy-card>
       </el-col>
     </el-row>
   </div>
@@ -44,7 +48,13 @@ import { useStore } from "@/store";
 
 import HyCard from "@/base-ui/card";
 import StatisticalPanel from "@/components/statistical-panel";
-import { PieEchart, MapEchart, RoseEchart } from "@/components/page-echarts";
+import {
+  PieEchart,
+  MapEchart,
+  RoseEchart,
+  LineEchart,
+  BarEchart
+} from "@/components/page-echarts";
 
 const store = useStore();
 store.dispatch("analysis/getAnalysisDataAction");

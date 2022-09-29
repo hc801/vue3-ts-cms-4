@@ -21,10 +21,20 @@
         </hy-card>
       </el-col>
       <el-col :span="7">
-        <hy-card title="分类商品数量（玫瑰图）"> </hy-card>
+        <hy-card title="分类商品数量（玫瑰图）">
+          <rose-echart :roseData="categoryGoodsCount"></rose-echart>
+        </hy-card>
       </el-col>
     </el-row>
     <!-- 3.底部的图表 -->
+    <el-row :gutter="10">
+      <el-col :span="12">
+        <hy-card title="分类商品的销量"></hy-card>
+      </el-col>
+      <el-col :span="12">
+        <hy-card title="分类商品的收藏"></hy-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -34,7 +44,7 @@ import { useStore } from "@/store";
 
 import HyCard from "@/base-ui/card";
 import StatisticalPanel from "@/components/statistical-panel";
-import { PieEchart, MapEchart } from "@/components/page-echarts";
+import { PieEchart, MapEchart, RoseEchart } from "@/components/page-echarts";
 
 const store = useStore();
 store.dispatch("analysis/getAnalysisDataAction");
@@ -65,9 +75,9 @@ const categoryGoodsFavor = computed(() => {
 
   const categoryGoodsFavor = store.state.analysis.categoryGoodsFavor;
   for (const item of categoryGoodsFavor) {
-    if (item.goodsCount && item.name) {
+    if (item.goodsFavor && item.name) {
       xLabels.push(item.name);
-      values.push(item.goodsCount);
+      values.push(item.goodsFavor);
     }
   }
 

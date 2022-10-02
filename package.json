@@ -17,6 +17,7 @@
     "dayjs": "^1.11.5",
     "echarts": "^5.4.0",
     "element-plus": "^2.2.13",
+    "highlight.js": "^11.6.0",
     "normalize.css": "^8.0.1",
     "vue": "^3.0.0",
     "vue-router": "^4.0.13",

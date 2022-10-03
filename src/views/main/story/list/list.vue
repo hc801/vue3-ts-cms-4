@@ -1,18 +1,24 @@
 <template>
   <div class="list">
-    <h2>list</h2>
+    <page-content :contentTableConfig="contentTableConfig" pageName="story">
+      <template #title="scope">
+        <div v-html="scope.row.title"></div>
+      </template>
+      <template #content="scope">
+        <div v-html="scope.row.content"></div>
+      </template>
+    </page-content>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import PageContent from "@/components/page-content";
 
-export default defineComponent({
-  name: "list",
-  setup() {
-    return {};
-  }
-});
+import { contentTableConfig } from "./config/content.config";
 </script>
 
-<style scoped></style>
+<style scoped lang="less">
+.page-content {
+  border: 0;
+}
+</style>
